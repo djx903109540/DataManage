@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.cloud.servicedatamanage.Dao.datamanageMapper">
+    <resultMap id="deviceResultMap" type="com.spring.cloud.servicedatamanage.Domain.po.Device">
+        <result column="id" property="id"></result>
+        <result column="name" property="name"></result>
+    </resultMap>
+    
+    <insert id="InsertData" parameterType="com.spring.cloud.servicedatamanage.Domain.po.Device">
+        insert into device (id, name)
+        values (#{id}, #{name})
+    </insert>
+
+    <select id="selectAll" resultMap="deviceResultMap">
+        select * from device
+    </select>
+
+    <select id="selectDataById" resultMap="deviceResultMap">
+        select * from device where id = #{deviceId}
+    </select>
+
+    <delete id="delete">
+        delete from device where id=#{device_id}
+    </delete>
+    
+    <update id="modifyData" parameterType="com.spring.cloud.servicedatamanage.Domain.po.Device">
+        update device set name = #{name} where id = #{id}
+    </update>
+
+</mapper>
