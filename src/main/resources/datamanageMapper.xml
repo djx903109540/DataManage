@@ -4,11 +4,21 @@
     <resultMap id="deviceResultMap" type="com.spring.cloud.servicedatamanage.Domain.po.Device">
         <result column="id" property="id"></result>
         <result column="name" property="name"></result>
+        <result column="code" property="code"></result>
+        <result column="type" property="type"></result>
+        <result column="department" property="department"></result>
+        <result column="label" property="label"></result>
+        <result column="model" property="model"></result>
+        <result column="serialNumber" property="serialNumber"></result>
+        <result column="sn" property="sn"></result>
+        <result column="status" property="status"></result>
+        <result column="storageTime" property="storageTime"></result>
+        <result column="registrationTime" property="registrationTime"></result>
     </resultMap>
     
     <insert id="InsertData" parameterType="com.spring.cloud.servicedatamanage.Domain.po.Device">
-        insert into device (id, name)
-        values (#{id}, #{name})
+        insert into device (id, name, code, type, department, label, model, serialNumber, sn, status, storageTime, registrationTime)
+        values (#{id}, #{name}, #{code}, #{type}, #{department}, #{label}, #{model}, #{serialNumber}, #{sn}, #{status}, #{storageTime}, #{registrationTime})
     </insert>
 
     <select id="selectAll" resultMap="deviceResultMap">
@@ -24,7 +34,19 @@
     </delete>
     
     <update id="modifyData" parameterType="com.spring.cloud.servicedatamanage.Domain.po.Device">
-        update device set name = #{name} where id = #{id}
+        update device
+            set name = #{name},
+                code = #{code},
+                type = #{type},
+                department = #{department},
+                label = #{label},
+                model = #{model},
+                serialNumber = #{serialNumber},
+                sn = #{sn},
+                status = #{status},
+                storageTime = #{storageTime},
+                registrationTime = #{registrationTime}
+            where id = #{id}
     </update>
 
 </mapper>
